@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-app.config
+C:\Users\jorge\source\repos\GeneradorRAM\GeneradorRAM\GeneradorRAM\Properties\*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
