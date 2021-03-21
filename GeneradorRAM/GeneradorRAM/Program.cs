@@ -18,6 +18,8 @@ namespace GeneradorRAM
 
             var config = Properties.Settings.Default;
             Carpeta carpeta = new Carpeta();
+            Ram ram = new Ram();
+            Pdf archivo = new Pdf();
 
             Console.WriteLine("Creando Carpeta Temporal");
             carpeta.Crear();
@@ -27,66 +29,54 @@ namespace GeneradorRAM
             int codProyecto = 1010168;
             int mesAno = 202001;
 
-            list.Add(new SqlParameter("@CodProyecto", codProyecto));
-            list.Add(new SqlParameter("@MesAno", mesAno));
+            var datosRam = ram.ObtenerDatosRam(codProyecto, mesAno);
 
-            Conexiones c = new Conexiones();
-            var ds = c.EjecutaSpToDataSet("cierre_resumenatencionmensual_Firma_impresion", list);
-            var archivo = new Pdf();
+            var esCierreNuevo = ram.EsCierreNuevo(codProyecto);
+            var usaRamNominas = ram.UsaRamNominas(codProyecto, mesAno);
 
-
-            list.Clear();
-            list.Add(new SqlParameter("@CodProyecto", codProyecto));
-            var esCierreNuevo = Convert.ToBoolean(c.EjecutaSpScalar("GetValidacionCierre", list));
-
-            list.Clear();
-            list.Add(new SqlParameter("@CodProyecto", codProyecto));
-            list.Add(new SqlParameter("@Periodo", mesAno));
-            var usaRamNominas = Convert.ToBoolean(c.EjecutaSpScalar("GetUsaRamNueva", list));
-
-            var codModeloIntervencion = Convert.ToInt32(ds.Tables[0].Rows[0]["CodModeloIntervencion"].ToString());
+            var codModeloIntervencion = Convert.ToInt32(datosRam.Tables[0].Rows[0]["CodModeloIntervencion"].ToString());
 
             var pdfs = new List<string>();
 
             //Generación de Pdfs según condiciones
             if (esCierreNuevo && usaRamNominas)
             {
-                pdfs.Add(archivo.Generar(config.ResumenAtencionMensualFinal, ds.Tables[0]));
+                pdfs.Add(archivo.Generar(config.ResumenAtencionMensualFinal, datosRam.Tables[0]));
 
-                if (ds.Tables.Count == 2)
+                if (datosRam.Tables.Count == 2)
                 {
-                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, ds.Tables[1]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, datosRam.Tables[1]));
                 }
 
-                if (ds.Tables.Count == 3)
+                if (datosRam.Tables.Count == 3)
                 {
-                    if (ds.Tables[2].Rows[0]["Listado"].ToString() == "Listado80bis")
+                    if (datosRam.Tables[2].Rows[0]["Listado"].ToString() == "Listado80bis")
                     {
-                        pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, ds.Tables[2]));
+                        pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, datosRam.Tables[2]));
                     }
 
-                    if (ds.Tables[2].Rows[0]["Listado"].ToString() == "ListadoSobreAtencion")
+                    if (datosRam.Tables[2].Rows[0]["Listado"].ToString() == "ListadoSobreAtencion")
                     {
-                        pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, ds.Tables[3]));
+                        pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, datosRam.Tables[3]));
 
                     }
                 }
 
-                if (ds.Tables.Count == 4)
+                if (datosRam.Tables.Count == 4)
                 {
-                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, ds.Tables[1]));
-                    pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, ds.Tables[2]));
-                    pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, ds.Tables[3]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, datosRam.Tables[1]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, datosRam.Tables[2]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, datosRam.Tables[3]));
                 }
             }
             else
             {
                 if (codModeloIntervencion == 83)
-                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPAD, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPAD, datosRam.Tables[0]));
                 else if (codModeloIntervencion == 128)
-                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPJC, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPJC, datosRam.Tables[0]));
                 else
-                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualOriginal, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualOriginal, datosRam.Tables[0]));
             }
 
             //Unir Pdf
