@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archivos\Pdf.cs" />
+    <Compile Include="Archivos\Ram.cs" />
     <Compile Include="Helpers\Carpeta.cs" />
     <Compile Include="Helpers\Conexiones.cs" />
     <Compile Include="Helpers\Repository.cs" />
