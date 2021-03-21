@@ -15,6 +15,8 @@ namespace GeneradorRAM
     {
         static void Main(string[] args)
         {
+
+            var config = Properties.Settings.Default;
             Carpeta carpeta = new Carpeta();
 
             Console.WriteLine("Creando Carpeta Temporal");
@@ -49,54 +51,45 @@ namespace GeneradorRAM
             //Generación de Pdfs según condiciones
             if (esCierreNuevo && usaRamNominas)
             {
-                pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenAtencionMensualFinal, ds.Tables[0]));
+                pdfs.Add(archivo.Generar(config.ResumenAtencionMensualFinal, ds.Tables[0]));
 
                 if (ds.Tables.Count == 2)
                 {
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoPlazasConvenidas, ds.Tables[1]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, ds.Tables[1]));
                 }
 
                 if (ds.Tables.Count == 3)
                 {
                     if (ds.Tables[2].Rows[0]["Listado"].ToString() == "Listado80bis")
                     {
-                        pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoNNA80bis, ds.Tables[2]));
+                        pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, ds.Tables[2]));
                     }
 
                     if (ds.Tables[2].Rows[0]["Listado"].ToString() == "ListadoSobreAtencion")
                     {
-                        pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoNNASobreAtencion, ds.Tables[3]));
+                        pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, ds.Tables[3]));
 
                     }
                 }
 
                 if (ds.Tables.Count == 4)
                 {
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoPlazasConvenidas, ds.Tables[1]));
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoNNA80bis, ds.Tables[2]));
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenListadoNNASobreAtencion, ds.Tables[3]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoPlazasConvenidas, ds.Tables[1]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoNNA80bis, ds.Tables[2]));
+                    pdfs.Add(archivo.Generar(config.ResumenListadoNNASobreAtencion, ds.Tables[3]));
                 }
             }
             else
             {
                 if (codModeloIntervencion == 83)
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenAtencionMensualPAD, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPAD, ds.Tables[0]));
                 else if (codModeloIntervencion == 128)
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenAtencionMensualPJC, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualPJC, ds.Tables[0]));
                 else
-                    pdfs.Add(archivo.Generar(Properties.Settings.Default.ResumenAtencionMensualOriginal, ds.Tables[0]));
+                    pdfs.Add(archivo.Generar(config.ResumenAtencionMensualOriginal, ds.Tables[0]));
             }
 
             //Unir Pdf
-
-            Console.WriteLine("Obteniendo Fechas de Enviado");
-            Console.WriteLine("Generar Carpetas por Fecha de Envio");
-            Console.WriteLine("Generar Archivos en carpetas de envío");
-            Console.WriteLine("Insertar en base de datos el archivo creado");
-            Console.WriteLine("Insertar en base de datos en tabla de archivos");
-
-            Console.WriteLine("Eliminando carpeta temporal");
-
 
 
             Console.ReadKey();

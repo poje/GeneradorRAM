@@ -50,5 +50,10 @@ namespace GeneradorRAM.Archivos
 
             return fileName;
         }
+
+        public string Unir(List<string> pdfs)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
