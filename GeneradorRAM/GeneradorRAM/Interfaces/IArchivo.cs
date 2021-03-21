@@ -10,5 +10,6 @@ namespace GeneradorRAM.Interfaces
     public interface IArchivo
     {
         string Generar(string nombreReporte, DataTable source);
+        string Unir(List<string> pdfs);
     }
 }
