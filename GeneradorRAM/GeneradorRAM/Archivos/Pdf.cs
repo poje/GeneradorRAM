@@ -17,7 +17,7 @@ namespace GeneradorRAM.Archivos
 
         }
 
-        public string Generar(string nombreReporte, DataTable source)
+        public string Generar(string nombreReporte, DataTable source, bool ramAntigua, string finalPath)
         {
             string fileName = string.Empty;
 
@@ -25,18 +25,32 @@ namespace GeneradorRAM.Archivos
             DiskFileDestinationOptions crDiskFileDestinationOptions = new DiskFileDestinationOptions();
             ReportDocument crReporte = new ReportDocument();
 
-            fileName = Properties.Settings.Default.PathRAMTemp + "\\" + 
-                DateTime.Now.Day + 
-                DateTime.Now.Month + 
-                DateTime.Now.Year + 
+            Console.WriteLine(string.Format("Generando RAM correspondiente a Folio {0}", source.Rows[0]["Folio"]));
+
+            if (ramAntigua)
+            {
+                //fileName = finalPath + ".pdf";
+                fileName = string.Format(@"{0}\RAM_{1}.pdf", finalPath, source.Rows[0]["Folio"].ToString());
+            }
+            else
+            {
+                fileName = Properties.Settings.Default.PathRAMTemp + "\\" +
+                DateTime.Now.Day +
+                DateTime.Now.Month +
+                DateTime.Now.Year +
                 DateTime.Now.Minute +
                 DateTime.Now.Second + ".pdf";
+
+            }
+            
 
             var pathReporte = Properties.Settings.Default.RptPath + "\\" + nombreReporte;
             crReporte.Load(pathReporte);
             crReporte.SetDataSource(source);
             crReporte.Refresh();
-            
+
+            Console.WriteLine(string.Format("Guardando en disco RAM correspondiente a Folio {0}", source.Rows[0]["Folio"]));
+
             crDiskFileDestinationOptions.DiskFileName = fileName;
             crExportOptions = crReporte.ExportOptions;
             crExportOptions.DestinationOptions = crDiskFileDestinationOptions;
@@ -47,6 +61,9 @@ namespace GeneradorRAM.Archivos
             crReporte.Dispose();
 
             crReporte.Close();
+
+            Console.WriteLine(string.Format("RAM Folio {0} Generado", source.Rows[0]["Folio"]));
+
 
             return fileName;
         }
