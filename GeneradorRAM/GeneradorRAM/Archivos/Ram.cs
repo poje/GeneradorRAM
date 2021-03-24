@@ -12,10 +12,33 @@ namespace GeneradorRAM.Archivos
     public class Ram
     {
         private readonly Conexiones _conexiones;
+
+        public DataTable PeriodosEnviados { get; set; }
         public Ram()
         {
             _conexiones = new Conexiones();
+
+            ObtenerPeriodosEnviados();
         }
+
+        private void ObtenerPeriodosEnviados()
+        {
+            PeriodosEnviados = _conexiones.EjecutaSpToDataTable("ObtenerPeriodosEnviados");
+        }
+
+        public DataTable ObtenerPeriodos()
+        {
+            return PeriodosEnviados;
+        }
+
+        public DataTable ObtenerRamsxFechaEnvio(string fechaEnvio)
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@FechaEnviado", fechaEnvio));
+            return _conexiones.EjecutaSpToDataTable("ObtenerRamsxFechaEnvio", list);
+        }
+       
+        
         public bool EsCierreNuevo(int codProyecto)
         {
             List<SqlParameter> list = new List<SqlParameter>();
@@ -40,7 +63,7 @@ namespace GeneradorRAM.Archivos
             List<SqlParameter> list = new List<SqlParameter>();
 
             list.Add(new SqlParameter("@CodProyecto", codProyecto));
-            list.Add(new SqlParameter("@periodo", periodo));
+            list.Add(new SqlParameter("@MesAno", periodo));
 
             return _conexiones.EjecutaSpToDataSet("cierre_resumenatencionmensual_Firma_impresion", list);
         }
