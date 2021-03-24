@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=sql003.senainfo.cl;Initial Catalog=SenainfoTest;Persist Security Info=True;User ID=SenainfoAppTest;Password=S3nainfoAppT3st587603</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="PathRAMTemp" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\\RAMTemp</Value>
