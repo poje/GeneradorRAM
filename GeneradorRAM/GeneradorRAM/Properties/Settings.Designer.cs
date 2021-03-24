@@ -25,13 +25,146 @@ namespace GeneradorRAM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sql003.senainfo.cl;Initial Catalog=SenainfoTest;Persist Security Info" +
+            "=True;User ID=SenainfoAppTest;Password=S3nainfoAppT3st587603")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
             }
             set {
                 this["ConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\RAMTemp")]
+        public string PathRAMTemp {
+            get {
+                return ((string)(this["PathRAMTemp"]));
+            }
+            set {
+                this["PathRAMTemp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\")]
+        public string PathBaseRAM {
+            get {
+                return ((string)(this["PathBaseRAM"]));
+            }
+            set {
+                this["PathBaseRAM"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Rpt")]
+        public string RptPath {
+            get {
+                return ((string)(this["RptPath"]));
+            }
+            set {
+                this["RptPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenAtencionMensual.rpt")]
+        public string ResumenAtencionMensual {
+            get {
+                return ((string)(this["ResumenAtencionMensual"]));
+            }
+            set {
+                this["ResumenAtencionMensual"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenAtencionMensualFinal.rpt")]
+        public string ResumenAtencionMensualFinal {
+            get {
+                return ((string)(this["ResumenAtencionMensualFinal"]));
+            }
+            set {
+                this["ResumenAtencionMensualFinal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenAtencionMensualOriginal.rpt")]
+        public string ResumenAtencionMensualOriginal {
+            get {
+                return ((string)(this["ResumenAtencionMensualOriginal"]));
+            }
+            set {
+                this["ResumenAtencionMensualOriginal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenListadoNNA80bis.rpt")]
+        public string ResumenListadoNNA80bis {
+            get {
+                return ((string)(this["ResumenListadoNNA80bis"]));
+            }
+            set {
+                this["ResumenListadoNNA80bis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenListadoNNASobreAtencion.rpt")]
+        public string ResumenListadoNNASobreAtencion {
+            get {
+                return ((string)(this["ResumenListadoNNASobreAtencion"]));
+            }
+            set {
+                this["ResumenListadoNNASobreAtencion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CrResumenListadoPlazasConvenidas.rpt")]
+        public string ResumenListadoPlazasConvenidas {
+            get {
+                return ((string)(this["ResumenListadoPlazasConvenidas"]));
+            }
+            set {
+                this["ResumenListadoPlazasConvenidas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenAtencionMensual_PAD.rpt")]
+        public string ResumenAtencionMensualPAD {
+            get {
+                return ((string)(this["ResumenAtencionMensualPAD"]));
+            }
+            set {
+                this["ResumenAtencionMensualPAD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("crResumenAtencionMensual_PJC.rpt")]
+        public string ResumenAtencionMensualPJC {
+            get {
+                return ((string)(this["ResumenAtencionMensualPJC"]));
+            }
+            set {
+                this["ResumenAtencionMensualPJC"] = value;
             }
         }
     }

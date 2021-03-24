@@ -3,7 +3,40 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data Source=sql003.senainfo.cl;Initial Catalog=SenainfoTest;Persist Security Info=True;User ID=SenainfoAppTest;Password=S3nainfoAppT3st587603</Value>
+    </Setting>
+    <Setting Name="PathRAMTemp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\RAMTemp</Value>
+    </Setting>
+    <Setting Name="PathBaseRAM" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\</Value>
+    </Setting>
+    <Setting Name="RptPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Rpt</Value>
+    </Setting>
+    <Setting Name="ResumenAtencionMensual" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenAtencionMensual.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenAtencionMensualFinal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenAtencionMensualFinal.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenAtencionMensualOriginal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenAtencionMensualOriginal.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenListadoNNA80bis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenListadoNNA80bis.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenListadoNNASobreAtencion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenListadoNNASobreAtencion.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenListadoPlazasConvenidas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CrResumenListadoPlazasConvenidas.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenAtencionMensualPAD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenAtencionMensual_PAD.rpt</Value>
+    </Setting>
+    <Setting Name="ResumenAtencionMensualPJC" Type="System.String" Scope="User">
+      <Value Profile="(Default)">crResumenAtencionMensual_PJC.rpt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -4,27 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using GeneradorRAM.Properties;
 
 namespace GeneradorRAM.Helpers
 {
-    public class Carpeta
+    public class CarpetaArchivo
     {
-        public Carpeta()
+        private Settings _config;
+        public CarpetaArchivo()
         {
-            
+            _config = Settings.Default;
         }
 
-        public void Crear()
+        public void CrearCarpetaTemporal()
         {
-            if (!Directory.Exists(Properties.Settings.Default.PathRAMTemp))
+            if (!Directory.Exists(_config.PathRAMTemp))
             {
-                Directory.CreateDirectory(Properties.Settings.Default.PathRAMTemp);
+                Directory.CreateDirectory(_config.PathRAMTemp);
+                Console.WriteLine($"Carpeta {0} creada correctamente", _config.PathRAMTemp);
             }
         }
 
-        public void Eliminar()
+        public void Crear(string path)
         {
-            Directory.Delete(Properties.Settings.Default.PathRAMTemp);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                Console.WriteLine($"Carpeta {path} creada correctamente");
+            }
+            else
+                Console.WriteLine($"Carpeta {path} ya existe", path);
+        }
+
+        public void EliminarArchivo(string path)
+        {
+            File.Delete(path);
+        }
+
+        public void EliminarCarpetaTemporal()
+        {
+            Directory.Delete(_config.PathRAMTemp);
         }
     }
 }
